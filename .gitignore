@@ -1,0 +1,19 @@
+# System files
+.DS_Store
+
+# Object files
+*.o
+
+# Compiled files
+*.out
+*.exe
+*.a
+push_swap
+checker_linux
+
+# Temp files
+*.swp
+bin
+
+# Environment files
+.env

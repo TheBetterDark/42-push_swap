@@ -1,0 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/13 01:42:16 by muabdi            #+#    #+#             */
+/*   Updated: 2024/07/11 17:39:28 by muabdi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/libft.h"
+
+// Adds the node ’new’ at the end of the list.
+void	ft_lstadd_back(t_list **lst, t_list *new_list)
+{
+	t_list	*last;
+
+	if (!lst || !new_list)
+		return ;
+	if (!*lst)
+	{
+		*lst = new_list;
+		return ;
+	}
+	last = *lst;
+	while (last->next != *lst)
+		last = last->next;
+	last->prev = last->next;
+	last->next = new_list;
+}
