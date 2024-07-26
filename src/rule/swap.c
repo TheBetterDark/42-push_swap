@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:42:27 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/23 01:46:36 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/26 16:20:27 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,20 @@ static void	swap(t_stack **head)
 	t_stack	*first;
 	t_stack	*second;
 
+	if (lstsize(*head) == 2)
+	{
+		*head = (*head)->next;
+		return ;
+	}
 	first = *head;
 	second = first->next;
 	first->next = second->next;
 	second->next = first;
 	second->prev = first->prev;
 	first->prev = second;
-	if (first->next)
-		first->next->prev = first;
 	if (second->prev != first)
 		second->prev->next = second;
+	if (first->next)
+		first->next->prev = first;
 	*head = second;
 }

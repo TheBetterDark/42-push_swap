@@ -17,5 +17,4 @@ void	handle_error(t_stack **stacks, char *info)
 {
 	ft_printf("\033[0;31mError: %s\n\033[0m", info);
 	cleanup_stacks(stacks);
-	exit(EXIT_FAILURE);
 }

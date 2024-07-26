@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:02:24 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/23 20:05:15 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/26 15:47:48 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 	else
 		stacks = initalize_stacks(argv + 1);
 	if (!stacks)
-		handle_error(NULL, "Failed to Initalize Stacks");
+		cleanup(stacks, split);
 	if (!is_sorted(stacks[0]))
 	{
 		if (lstsize(stacks[0]) == 2)
@@ -45,27 +45,33 @@ int	main(int argc, char *argv[])
 
 static void	check_args(int argc, char *argv[])
 {
+	char	*str;
+
+	str = ft_strtrim(argv[1], " ");
 	if (argc == 1 || (argc > 2 && !argv[1][0]) || (argc == 2
-		&& (ft_strlen(argv[1]) == 0 || ft_strtrim(argv[1], " ")[0] == '\0')))
+		&& (ft_strlen(argv[1]) == 0 || str[0] == '\0')))
 	{
-		ft_printf("Usage: push_swap 2 1 3 5 4 || push_swap \"2 1 3 5 4\"");
+		free(str);
 		exit(EXIT_FAILURE);
 	}
+	free(str);
 }
 
 static void	cleanup(t_stack **stacks, char **split)
 {
 	int	i;
 
-	cleanup_stacks(stacks);
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
+	if (stacks)
+		cleanup_stacks(stacks);
+	if (split)
 	{
-		free(split[i]);
-		i++;
+		i = 0;
+		while (split[i])
+		{
+			free(split[i]);
+			i++;
+		}
+		free(split);
 	}
-	free(split);
 	exit(EXIT_SUCCESS);
 }

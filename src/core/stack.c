@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:12:25 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/23 20:34:52 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/26 15:48:32 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ t_stack	**initalize_stacks(char *numbers[])
 	if (stacks == NULL)
 		handle_error(NULL, "Memory Allocation Failure");
 	stacks[0] = NULL;
+	stacks[1] = NULL;
 	while (numbers[i])
 	{
 		if (!validate_syntax(numbers[i]))
-			handle_error(stacks, "Invalid Argument");
+			return (handle_error(stacks, "Invalid Argument"), NULL);
 		n = atol(numbers[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			handle_error(stacks, "INT_MAX or INT_MIN Overflow");
-		if (!validate_duplicates(stacks[0], n))
-			handle_error(stacks, "Duplicate Argument");
+			return (handle_error(stacks, "INT_MAX or INT_MIN Overflow"), NULL);
 		lstappend(&stacks[0], lstnew((int)n));
+		if (!validate_duplicates(stacks[0], n))
+			return (handle_error(stacks, "Duplicate Argument"), NULL);
 		i++;
 	}
-	stacks[1] = NULL;
 	return (stacks);
 }
 
