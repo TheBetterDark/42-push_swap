@@ -6,7 +6,7 @@
 #    By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 23:59:26 by muabdi            #+#    #+#              #
-#    Updated: 2024/07/26 15:45:29 by muabdi           ###   ########.fr        #
+#    Updated: 2024/08/23 15:31:35 by muabdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBS = ./libs
 LIBFT = $(LIBS)/libft
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra
 INCLUDEFLAGS = -I$(INCLUDES) -I$(LIBFT)/includes
 
 RED = \033[0;31m
